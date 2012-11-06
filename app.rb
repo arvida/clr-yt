@@ -1,7 +1,7 @@
 class App < Sinatra::Base
 
-  get %r{(?<color>\w{6}|)$} do
-    @color = '#' + (params['color'].empty? ? 'eeede3' : params['color'])
+  get '/' do
+    @color = '#eeede3'
     erb :index
   end
 

@@ -4,6 +4,8 @@
    Author's custom styles
    ========================================================================== */
 
+.row {text-align: center; }
+
 #colorpicker {
   width: 195px;
   height: 195px;
@@ -12,15 +14,22 @@
 
 .color-code {
   margin-bottom: .5em;
-  text-align: center;
   font-size: 2em;
   font-weight: bold;
 }
 
-#hex {
+#rgb {
+  margin-bottom: 1em;
+}
+
+#share .offset3 {
+  padding: 10px 0;
+  background: rgba(40,40,40, 0.25);
+  border-radius: 4px;
 }
 
 footer {
+  font-size: 0.857em;
   position: absolute;
   bottom: 0;
 }

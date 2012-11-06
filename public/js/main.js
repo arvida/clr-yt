@@ -1,19 +1,26 @@
+var addthis_share = {url:"http://www.johndoe.com"}
 $(document).ready(function () {
+
 	picker = $.farbtastic("#colorpicker", function(e) {
     var rgb  = hexToRgb(e);
     grey = (rgb.r + rgb.g + rgb.b)/3;
     if(grey > 80){
-      grey = 255;
+      grey = 225;
     }else{
       grey = 0;
     }
-    $('.color-code').css({color: 'rgb(' + (255 - grey) + ', ' + (255 - grey) + ', ' + (255 - grey) + ')'});
 
+    $('body').css({color: 'rgb(' + (225 - grey) + ', ' + (225 - grey) + ', ' + (225 - grey) + ')'});
     $('body').css({backgroundColor:e}).val(e);
     $('#hex span').text(e);
     $('#r').text(rgb.r);
     $('#g').text(rgb.g);
     $('#b').text(rgb.b);
+
+    var link = 'http://clr.yt/' + e;
+    $('#url a').text(link).attr('href', link);
+    window.location.hash = e;
+
 	})
 
   picker.setColor($('body').data('color'));
