@@ -1,5 +1,8 @@
-var addthis_share = {url:"http://www.johndoe.com"}
 $(document).ready(function () {
+
+  var init_color = window.location.hash;
+  if(!init_color){ init_color = '#eeede3'; }
+  $('body').data('color', init_color);
 
 	picker = $.farbtastic("#colorpicker", function(e) {
     var rgb  = hexToRgb(e);
