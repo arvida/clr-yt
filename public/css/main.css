@@ -1,0 +1,41 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+#colorpicker {
+  width: 195px;
+  height: 195px;
+  margin: 4em auto 2em auto;
+}
+
+.color-code {
+  margin-bottom: .5em;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#hex {
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
