@@ -4,6 +4,7 @@ $(document).ready(function () {
   var clip_rgb = new ZeroClipboard.Client();
   clip_hex.glue('copy-hex');
   clip_rgb.glue('copy-rgb');
+
   var init_color = window.location.hash;
   if(!init_color){ init_color = '#eeede3'; }
   $('body').data('color', init_color);
@@ -37,11 +38,6 @@ $(document).ready(function () {
 
   picker.setColor($('body').data('color'));
 
-  $('#copy-hex').click(function(){
-    console.log($('#hex').text());
-  });
-  $('#copy-rgb').click(function(){
-  });
 });
 
 function hexToRgb(hex) {
