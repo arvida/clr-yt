@@ -4,6 +4,8 @@
    Author's custom styles
    ========================================================================== */
 
+a {color: #383838; }
+
 .row {text-align: center; }
 
 #colorpicker {
@@ -22,29 +24,46 @@
   margin-bottom: 1em;
 }
 
+#url {
+  margin-bottom: 1em;
+}
+
 #share .offset3 {
   padding: 10px 0;
-  background: rgba(40,40,40, 0.25);
+  /* background: rgba(155,155,155, 0.25); */
   border-radius: 4px;
 }
 
-footer {
-  font-size: 0.857em;
-  position: absolute;
-  bottom: 0;
+#main {
+  padding-bottom: 120px;
 }
 
 
+footer {
+  font-size: 0.857em;
+}
 
+@media (min-width: 770px) {
+  footer {
+    padding-left: 20px;
+  }
+}
+  footer p {
+    margin-top: 10px;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -70px; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+    height: 70px; /* .push must be the same height as .footer */
+}

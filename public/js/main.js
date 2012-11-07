@@ -1,5 +1,9 @@
 $(document).ready(function () {
-
+  ZeroClipboard.setMoviePath( 'js/vendor/ZeroClipboard.swf' );
+  var clip_hex = new ZeroClipboard.Client();
+  var clip_rgb = new ZeroClipboard.Client();
+  clip_hex.glue('copy-hex');
+  clip_rgb.glue('copy-rgb');
   var init_color = window.location.hash;
   if(!init_color){ init_color = '#eeede3'; }
   $('body').data('color', init_color);
@@ -7,13 +11,16 @@ $(document).ready(function () {
 	picker = $.farbtastic("#colorpicker", function(e) {
     var rgb  = hexToRgb(e);
     grey = (rgb.r + rgb.g + rgb.b)/3;
-    if(grey > 80){
-      grey = 225;
+    if(grey > 90){
+      text_grey = 41;
+      link_grey = 61;
     }else{
-      grey = 0;
+      text_grey = 225;
+      link_grey = 180;
     }
 
-    $('body').css({color: 'rgb(' + (225 - grey) + ', ' + (225 - grey) + ', ' + (225 - grey) + ')'});
+    $('body').css({color: 'rgb(' + (text_grey) + ', ' + (text_grey) + ', ' + (text_grey) + ')'});
+    $('a').css({color: 'rgb(' + (link_grey) + ', ' + (link_grey) + ', ' + (link_grey) + ')'});
     $('body').css({backgroundColor:e}).val(e);
     $('#hex span').text(e);
     $('#r').text(rgb.r);
@@ -24,9 +31,17 @@ $(document).ready(function () {
     $('#url a').text(link).attr('href', link);
     window.location.hash = e;
 
+    clip_hex.setText($('#hex').text().trim());
+    clip_rgb.setText(rgb.r+', '+rgb.g+', '+rgb.b);
 	})
 
   picker.setColor($('body').data('color'));
+
+  $('#copy-hex').click(function(){
+    console.log($('#hex').text());
+  });
+  $('#copy-rgb').click(function(){
+  });
 });
 
 function hexToRgb(hex) {
