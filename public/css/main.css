@@ -1,8 +1,22 @@
+html {
+  font-size: 100%;
+}
 
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+.container::before, .container::after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.container::after {
+clear: both;
+}
 
 a {color: #383838; }
 
@@ -48,7 +62,6 @@ footer {
 
 @media (min-width: 770px) {
   footer {
-    padding-left: 20px;
   }
 }
   footer p {
@@ -62,13 +75,16 @@ html, body {
     height: 100%;
 }
 .container {
+
     min-height: 100%;
     height: auto !important;
     height: 100%;
     margin: 0 auto -70px; /* the bottom margin is the negative value of the footer's height */
 }
-footer, .push {
-    height: 70px; /* .push must be the same height as .footer */
+footer {
+  padding-left: 20px;
+  display: block;
+  height: 70px; /* .push must be the same height as .footer */
 }
 
 /**
