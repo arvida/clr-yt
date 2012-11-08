@@ -1,10 +1,4 @@
 $(document).ready(function () {
-  ZeroClipboard.setMoviePath('/ZeroClipboard.swf');
-  var clip_hex = new ZeroClipboard.Client();
-  var clip_rgb = new ZeroClipboard.Client();
-  clip_hex.glue('copy-hex', 'buttons');
-  clip_rgb.glue('copy-rgb', 'buttons');
-
   var init_color = window.location.hash;
   if(!init_color){ init_color = '#eeede3'; }
   $('body').data('color', init_color);
@@ -33,10 +27,19 @@ $(document).ready(function () {
 
     clip_hex.setText($('#hex').text().trim());
     clip_rgb.setText(rgb.r+', '+rgb.g+', '+rgb.b);
-	})
+	});
+
+  ZeroClipboard.setMoviePath('/ZeroClipboard.swf');
+  var clip_hex = new ZeroClipboard.Client();
+  var clip_rgb = new ZeroClipboard.Client();
 
   picker.setColor($('body').data('color'));
   window.location.hash = '';
+
+  clip_hex.glue('copy-hex', 'buttons');
+  clip_rgb.glue('copy-rgb', 'buttons');
+
+
 
   if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
     $('#buttons').hide();
