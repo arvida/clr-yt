@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  ZeroClipboard.setMoviePath( 'js/vendor/ZeroClipboard.swf' );
+  ZeroClipboard.setMoviePath('/ZeroClipboard.swf');
   var clip_hex = new ZeroClipboard.Client();
   var clip_rgb = new ZeroClipboard.Client();
   clip_hex.glue('copy-hex', 'buttons');
