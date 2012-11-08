@@ -2,8 +2,8 @@ $(document).ready(function () {
   ZeroClipboard.setMoviePath( 'js/vendor/ZeroClipboard.swf' );
   var clip_hex = new ZeroClipboard.Client();
   var clip_rgb = new ZeroClipboard.Client();
-  clip_hex.glue('copy-hex');
-  clip_rgb.glue('copy-rgb');
+  clip_hex.glue('copy-hex', 'buttons');
+  clip_rgb.glue('copy-rgb', 'buttons');
 
   var init_color = window.location.hash;
   if(!init_color){ init_color = '#eeede3'; }
@@ -30,14 +30,17 @@ $(document).ready(function () {
 
     var link = 'http://clr.yt/' + e;
     $('#url a').text(link).attr('href', link);
-    window.location.hash = e;
 
     clip_hex.setText($('#hex').text().trim());
     clip_rgb.setText(rgb.r+', '+rgb.g+', '+rgb.b);
 	})
 
   picker.setColor($('body').data('color'));
+  window.location.hash = '';
 
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+    $('#buttons').hide();
+  }
 });
 
 function hexToRgb(hex) {
