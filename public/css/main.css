@@ -1,7 +1,7 @@
-html {
-  font-size: 100%;
-}
-
+/* Some bits from twitter bootsstrap / http://twitter.github.com/bootstrap/ */
+* { margin: 0; }
+html, body { height: 100%; }
+html { font-size: 100%; }
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
@@ -9,83 +9,110 @@ body {
   color: #333;
 }
 
-.container::before, .container::after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-.container::after {
-clear: both;
-}
-
-a {color: #383838; }
-
-.row {text-align: center; }
-
-#colorpicker {
-  width: 195px;
-  height: 195px;
-  margin: 4em auto 2em auto;
-}
-
-.color-code {
-  margin-bottom: .5em;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-#rgb {
-  margin-bottom: 1em;
-}
-
-#url {
-  margin-bottom: 1em;
-}
-
-#share .offset3 {
-  padding: 10px 0;
-  border-radius: 4px;
-}
-  #buttons {
-    position: relative;
-    width: 180px;
-    margin: auto;
-  }
-
-#main {
-  padding-bottom: 120px;
-}
-
 footer {
   font-size: 0.857em;
-}
-
-@media (min-width: 770px) {
-  footer {
-  }
-}
-  footer p {
-    margin-top: 10px;
-  }
-
-* {
-    margin: 0;
-}
-html, body {
-    height: 100%;
-}
-.container {
-
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -70px; /* the bottom margin is the negative value of the footer's height */
-}
-footer {
-  padding-left: 20px;
+  padding-left: 24px;
   display: block;
-  height: 70px; /* .push must be the same height as .footer */
+  height: 75px;
 }
+  footer p { margin-top: 10px; }
+
+a { color: #383838; }
+
+.container {
+  min-height: 100%;
+  height: auto!important;
+  height: 100%;
+  margin: 0 auto -75px;
+}
+
+.container::before, .container::after {
+  display: table;
+  content: "";
+}
+
+  #main { padding-bottom: 120px; }
+
+    .row {text-align: center; }
+
+    #colorpicker {
+      width: 195px;
+      height: 195px;
+      margin: 4em auto 2em auto;
+    }
+
+    .color-code {
+      margin-bottom: .5em;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    #rgb { margin-bottom: 1em; }
+
+    #url { margin-bottom: 1em; }
+
+    #buttons {
+      position: relative;
+      width: 180px;
+      margin: auto;
+    }
+
+    .btn {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      display: inline-block;
+      padding: 4px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333;
+      text-align: center;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: whiteSmoke;
+      background-image: -moz-linear-gradient(top, white, #E6E6E6);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
+      background-image: -webkit-linear-gradient(top, white, #E6E6E6);
+      background-image: -o-linear-gradient(top, white, #E6E6E6);
+      background-image: linear-gradient(to bottom, white, #E6E6E6);
+      background-repeat: repeat-x;
+      border: 1px solid #BBB;
+      border-bottom-color: #A2A2A2;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+      filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      border-color: #C5C5C5;
+      border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-small {
+      padding: 2px 10px;
+      font-size: 11.9px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+
+    .hover { 
+      background-image: -moz-linear-gradient(top, white, #ddd);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#ddd));
+      background-image: -webkit-linear-gradient(top, white, #ddd);
+      background-image: -o-linear-gradient(top, white, #ddd);
+      background-image: linear-gradient(to bottom, white, #ddd);
+    }
+
+    .active { 
+      background-image: -moz-linear-gradient(top, #cfcfcf, white);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cfcfcf), to(white));
+      background-image: -webkit-linear-gradient(top, #cfcfcf, white);
+      background-image: -o-linear-gradient(top, #cfcfcf, white);
+      background-image: linear-gradient(to bottom, #cfcfcf, white);
+    }
 
 /**
  * Farbtastic Color Picker 1.2
