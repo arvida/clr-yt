@@ -17,7 +17,7 @@ class App < Sinatra::Base
 
     Sprockets::Helpers.configure do |config|
       config.digest      = true
-      config.asset_host  = 'dq4xc9gneuipl.cloudfront.net'
+      config.asset_host  = ENV['ASSET_HOST']
     end
   end
 
