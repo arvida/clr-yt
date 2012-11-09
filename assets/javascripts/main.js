@@ -1,56 +1,105 @@
-$(document).ready(function () {
-  var init_color = window.location.hash;
-  if(!init_color){ init_color = '#eeede3'; }
-  $('body').data('color', init_color);
+(function($) {
+  var Clryt = (function(){
+    function Clryt(element, initColor){
+      this.element = $(element);
+      this.colorCode = initColor;
 
-	picker = $.farbtastic("#colorpicker", function(e) {
-    var rgb  = hexToRgb(e);
-    grey = (rgb.r + rgb.g + rgb.b)/3;
-    if(grey > 90){
-      text_grey = 41;
-      link_grey = 61;
-    }else{
-      text_grey = 225;
-      link_grey = 180;
+      this.linkElement = this.element.find('#url a');
+      this.hexElement = this.element.find('#hex span');
+      this.rgbElement = this.element.find('#rgb span');
+
+      this.rgbCache = {};
+      this.hexColorRegexp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+      this.darkTextColor = '#414141';
+      this.darkLinkColor = '#333';
+      this.lightTextColor = '#eee';
+      this.lightLinkColor = '#ccc';
+
+      this.setupClipboard();
+      this.setupListeners();
+
+      this.picker.setColor(this.colorCode);
+      this.hideButtonsForMobile();
     }
 
-    $('body').css({color: 'rgb(' + (text_grey) + ', ' + (text_grey) + ', ' + (text_grey) + ')'});
-    $('a').css({color: 'rgb(' + (link_grey) + ', ' + (link_grey) + ', ' + (link_grey) + ')'});
-    $('body').css({backgroundColor:e}).val(e);
-    $('#hex span').text(e);
-    $('#r').text(rgb.r);
-    $('#g').text(rgb.g);
-    $('#b').text(rgb.b);
+    Clryt.prototype.setupClipboard = function(){
+      ZeroClipboard.setMoviePath('/ZeroClipboard.swf');
 
-    var link = 'http://clr.yt/' + e;
-    $('#url a').text(link).attr('href', link);
+      this.clipboard_hex = new ZeroClipboard.Client();
+      this.clipboard_rgb = new ZeroClipboard.Client();
 
-    clip_hex.setText($('#hex').text().trim());
-    clip_rgb.setText(rgb.r+', '+rgb.g+', '+rgb.b);
-	});
+      this.clipboard_hex.glue('copy-hex', 'buttons');
+      this.clipboard_rgb.glue('copy-rgb', 'buttons');
+    }
 
-  ZeroClipboard.setMoviePath('/ZeroClipboard.swf');
-  var clip_hex = new ZeroClipboard.Client();
-  var clip_rgb = new ZeroClipboard.Client();
+    Clryt.prototype.setupListeners = function(){
+      var self = this;
+      this.picker = $.farbtastic("#colorpicker", function(e) {
+        self.colorCode = e.trim();
 
-  picker.setColor($('body').data('color'));
-  window.location.hash = '';
+        self.adjustUIColors();
+        self.updateColorInfo();
 
-  clip_hex.glue('copy-hex', 'buttons');
-  clip_rgb.glue('copy-rgb', 'buttons');
+        self.clipboard_hex.setText(self.colorCode);
+        self.clipboard_rgb.setText(self.rgb().join(', '));
 
+        window.location.hash = '';
+      });
 
+      if(Modernizr.hashchange){
+        window.onhashchange = function(){
+          if(self.hexColorRegexp.exec(window.location.hash)){
+            self.picker.setColor(window.location.hash);
+          }
+        }
+      }
+    }
 
-  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-    $('#buttons').hide();
-  }
-});
+    Clryt.prototype.adjustUIColors = function () {
+      var grey = (this.rgb()[0] + this.rgb()[1] + this.rgb()[2])/3;
 
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-  } : null;
-}
+      if(grey > 110){
+        $('body').css({color: this.darkTextColor});
+        $('a').css({color: this.darkLinkColor});
+      }else{
+        $('body').css({color: this.lightTextColor});
+        $('a').css({color: this.lightLinkColor});
+      }
+
+      $('body').css({backgroundColor: this.colorCode});
+    }
+
+    Clryt.prototype.updateColorInfo = function() {
+      this.hexElement.text(this.colorCode);
+      this.rgbElement.text(this.rgb().join(', '));
+
+      var link = 'http://clr.yt/' + this.colorCode
+      this.linkElement.text(link).attr('href', link);
+    }
+
+    Clryt.prototype.rgb = function() {
+      if(!this.rgbCache[this.colorCode]){
+        var match = this.hexColorRegexp.exec(this.colorCode);
+        this.rgbCache[this.colorCode] = match ? [
+          parseInt(match[1], 16),
+          parseInt(match[2], 16),
+          parseInt(match[3], 16)
+        ] : null;
+      }
+
+      return this.rgbCache[this.colorCode];
+    }
+
+    Clryt.prototype.hideButtonsForMobile = function(){
+      if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+        this.element.find('#buttons').hide();
+      }
+    }
+
+    return Clryt;
+  })();
+
+  $(document).ready(function () {
+    new Clryt('#main', window.location.hash || '#eeede3');
+  });
+}(jQuery));

@@ -13,9 +13,10 @@ footer {
   font-size: 0.857em;
   padding-left: 24px;
   display: block;
-  height: 75px;
+  height: 95px;
 }
   footer p { margin-top: 10px; }
+  .fb_iframe_widget { display: block!important; }
 
 a { color: #383838; }
 
@@ -23,7 +24,7 @@ a { color: #383838; }
   min-height: 100%;
   height: auto!important;
   height: 100%;
-  margin: 0 auto -75px;
+  margin: 0 auto -95px;
 }
 
 .container::before, .container::after {
@@ -32,25 +33,25 @@ a { color: #383838; }
 }
 
   #main { padding-bottom: 120px; }
-
     .row {text-align: center; }
-
     #colorpicker {
       width: 195px;
       height: 195px;
-      margin: 4em auto 2em auto;
+      margin: 3em auto 2em auto;
     }
-
     .color-code {
       margin-bottom: .5em;
       font-size: 2em;
       font-weight: bold;
     }
-
     #rgb { margin-bottom: 1em; }
-
-    #url { margin-bottom: 1em; }
-
+    #url {
+      margin: 0 auto 1.5em auto;
+      padding: 8px 4px;
+      width: 190px;
+      background: rgba(255,255,255,.2);
+      border-radius: 4px;
+    }
     #buttons {
       position: relative;
       width: 180px;

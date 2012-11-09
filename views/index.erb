@@ -24,14 +24,10 @@
           </div>
         </div>
         <div class="row color-code" id="hex">
-          <div class="offset5 span2">
-            <span>#ffffff</span>
-          </div>
+          <span></span>
         </div>
         <div class="row color-code" id="rgb">
-          <span id="r"></span>,
-          <span id="g"></span>,
-          <span id="b"></span>
+          <span></span>
         </div>
         <div class="row" id="share">
           <div id="url">
@@ -47,6 +43,7 @@
     </div>
     <footer>
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://clr.yt/">Tweet</a>
+      <div class="fb-like" data-href="http://clr.yt" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false"></div>
       <p>Made by <a href="http://arvidandersson.se">Arvid Andersson</a></p>
     </footer>
 
@@ -64,5 +61,13 @@
       })();
     </script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>
