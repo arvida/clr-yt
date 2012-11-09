@@ -13,18 +13,21 @@ footer {
   font-size: 0.857em;
   padding-left: 24px;
   display: block;
-  height: 95px;
+  height: 110px;
+  opacity: .75;
 }
+footer:hover { opacity: 1; }
   footer p { margin-top: 10px; }
   .fb_iframe_widget { display: block!important; }
 
 a { color: #383838; }
+a:hover { text-decoration: none; }
 
 .container {
   min-height: 100%;
   height: auto!important;
   height: 100%;
-  margin: 0 auto -95px;
+  margin: 0 auto -110px;
 }
 
 .container::before, .container::after {
@@ -32,7 +35,7 @@ a { color: #383838; }
   content: "";
 }
 
-  #main { padding-bottom: 120px; }
+  #main { padding-bottom: 180px; }
     .row {text-align: center; }
     #colorpicker {
       width: 195px;
