@@ -273,7 +273,6 @@
           parseInt(match[3], 16)
         ) : null;
       }
-
       return this.rgbCache[hexCode];
     }
 
@@ -289,9 +288,9 @@
   var RGBColor = (function() {
 
     function RGBColor(r, g, b) {
-      this.r = r || 255;
-      this.g = g || 255;
-      this.b = b || 255;
+      this.r = parseInt(r);
+      this.g = parseInt(g);
+      this.b = parseInt(b);
     }
 
     RGBColor.prototype.toString = function(){
