@@ -8,3 +8,6 @@ gem 'sprockets'
 gem 'sprockets-helpers'
 gem 'uglifier'
 gem 'yui-compressor'
+
+gem 'chunky_png'
+gem 'oily_png'
