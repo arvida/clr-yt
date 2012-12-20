@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-jQuery.fn.farbtastic = function (callback) {
-  $.farbtastic(this, callback);
+jQuery.fn.farbtastic = function (callback, endCallback) {
+  $.farbtastic(this, callback, endCallback);
   return this;
 };
 
-jQuery.farbtastic = function (container, callback) {
+jQuery.farbtastic = function (container, callback, endCallback) {
   var container = $(container).get(0);
-  return container.farbtastic || (container.farbtastic = new jQuery._farbtastic(container, callback));
+  return container.farbtastic || (container.farbtastic = new jQuery._farbtastic(container, callback, endCallback));
 }
 
-jQuery._farbtastic = function (container, callback) {
+jQuery._farbtastic = function (container, callback, endCallback) {
   // Store farbtastic object
   var fb = this;
 
@@ -39,6 +39,7 @@ jQuery._farbtastic = function (container, callback) {
   fb.radius = 84;
   fb.square = 100;
   fb.width = 194;
+  fb.endCallback = null;
 
   // Fix background PNGs in IE6
   if (navigator.appVersion.match(/MSIE [0-6]\./)) {
@@ -206,6 +207,9 @@ jQuery._farbtastic = function (container, callback) {
     $(document).unbind('touchmove', fb.touchmove);
     $(document).unbind('touchend', fb.touchend);
     document.dragging = false;
+
+    fb.callEndCallback();
+
     event.preventDefault();
     return false;
   }
@@ -240,6 +244,14 @@ jQuery._farbtastic = function (container, callback) {
     $(document).unbind('mousemove', fb.mousemove);
     $(document).unbind('mouseup', fb.mouseup);
     document.dragging = false;
+
+    fb.callEndCallback();
+  }
+
+  fb.callEndCallback = function() {
+    if (typeof fb.endCallback == 'function') {
+      fb.endCallback.call(fb, fb.color);
+    }
   }
 
   /**
@@ -379,11 +391,15 @@ jQuery._farbtastic = function (container, callback) {
     return false;
   });
 
-    // Init color
-  fb.setColor('#ffffff');
+  // Init color
+  // fb.setColor('#ffffff');
 
   // Set linked elements/callback
   if (callback) {
     fb.linkTo(callback);
+  }
+
+  if (endCallback) {
+    fb.endCallback = endCallback;
   }
 }
