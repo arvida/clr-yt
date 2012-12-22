@@ -1,3 +1,5 @@
+require_relative 'lib/ase_generator'
+
 class App < Sinatra::Base
   INIT_COLOR = '2c2c2c'
 
@@ -31,6 +33,17 @@ class App < Sinatra::Base
     def format_as_hex_values(colors)
       "##{colors.gsub('-',' #')}"
     end
+  end
+
+  get '/:colors.ase' do
+    colors = params[:colors].split('-')
+    generator = ASEGenerator.new(palette_name: 'Clr.yt', colors: colors)
+
+    halt 400 unless generator.valid?
+
+    content_type 'application/octet-stream'
+    attachment 'clr_yt-'+generator.colors.join('-')+'.ase'
+    response.write generator.body
   end
 
   get '/:colors.png' do

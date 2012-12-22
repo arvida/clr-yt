@@ -136,6 +136,7 @@
 
         $('#share .url').text(url).attr('href', url);
         $('#share .url-image').attr('href', url+'.png');
+        $('#share .url-ase').attr('href', url+'.ase');
 
         if(typeof(twttr) != 'undefined' && twttr.widgets){
           $('#tweetBtn iframe').remove();
